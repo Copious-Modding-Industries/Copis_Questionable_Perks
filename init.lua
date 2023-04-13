@@ -32,7 +32,6 @@ end
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/copis_questionable_perks/files/scripts/perk/perk_list.lua")
 
 
-
 --- ### Adds a component to an entity file.
 --- ***
 --- @param file_path string The path to the file you wish to add a component to.
