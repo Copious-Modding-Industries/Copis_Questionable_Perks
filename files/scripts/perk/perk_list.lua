@@ -140,7 +140,8 @@ local to_insert =
             -- Do nothing lol
         end
     },
-    --  Revenge intermission
+    --[[
+    --  Revenge Supernova
     {
         id = "COPIS_QSTNBL_PERKS_REVENGE_SUPERNOVA",
         author = "Copi",
@@ -157,7 +158,7 @@ local to_insert =
                 "mods/copis_questionable_perks/files/scripts/perk/damage_received/supernova.lua"
             })
         end,
-    },
+    },]]
 }
 
 for i = 1, #to_insert do
