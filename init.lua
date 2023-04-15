@@ -60,7 +60,7 @@ ModEntityFileAddComponent(
     "data/entities/items/pickup/perk.xml",
 [[
 <LuaComponent
-    execute_every_n_frame="1"
+    execute_on_added="1"
     remove_after_executed="1"
     script_source_file="mods/copis_questionable_perks/files/scripts/piss_wand_initer.lua"
 />

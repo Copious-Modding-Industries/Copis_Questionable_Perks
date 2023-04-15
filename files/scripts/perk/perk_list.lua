@@ -89,7 +89,7 @@ local to_insert =
             GameRemoveFlagRun("copis_qstnbl_perks_monster_wands")
             local enemies = EntityGetWithTag("enemy")
             for i = 1, #enemies do
-            local victim = enemies[i]
+                local victim = enemies[i]
                 local picker = EntityGetFirstComponentIncludingDisabled(victim, "ItemPickUpperComponent")
                 if picker ~= nil then
                     local has_wand = false
@@ -217,24 +217,24 @@ local to_insert =
             })
         end,
     },
-        -- Monster Wands
-        {
-            id = "COPIS_QSTNBL_PERKS_ITEM_REPEL",
-            author = "Copi",
-            ui_name = "$perk_name_copis_qstnbl_perks_item_repel",
-            ui_description = "$perk_desc_copis_qstnbl_perks_item_repel",
-            ui_icon = "mods/copis_questionable_perks/files/ui_gfx/perk_icons/item_repel.png",
-            perk_icon = "mods/copis_questionable_perks/files/items_gfx/perks/item_repel.png",
-            stackable = false,
-            func = function(entity_perk_item, entity_who_picked, item_name)
-                EntityAddComponent2(entity_who_picked, "LuaComponent", {
-                    _tags = "perk_component",
-                    script_source_file =
-                    "mods/copis_questionable_perks/files/scripts/perk/item_repel.lua",
-                    execute_every_n_frames = 1
-                })
-            end,
-        },
+    -- Greed Repulsion Field
+    {
+        id = "COPIS_QSTNBL_PERKS_ITEM_REPEL",
+        author = "Copi",
+        ui_name = "$perk_name_copis_qstnbl_perks_item_repel",
+        ui_description = "$perk_desc_copis_qstnbl_perks_item_repel",
+        ui_icon = "mods/copis_questionable_perks/files/ui_gfx/perk_icons/item_repel.png",
+        perk_icon = "mods/copis_questionable_perks/files/items_gfx/perks/item_repel.png",
+        stackable = false,
+        func = function(entity_perk_item, entity_who_picked, item_name)
+            EntityAddComponent2(entity_who_picked, "LuaComponent", {
+                _tags = "perk_component",
+                script_source_file =
+                "mods/copis_questionable_perks/files/scripts/perk/item_repel.lua",
+                execute_every_n_frames = 1
+            })
+        end,
+    },
 }
 
 for i = 1, #to_insert do
