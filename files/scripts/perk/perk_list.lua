@@ -1,6 +1,6 @@
 local to_insert =
 {
-    --  Revenge intermission
+    -- Revenge intermission
     {
         id = "COPIS_QSTNBL_PERKS_REVENGE_INTERMISSION",
         author = "Copi",
@@ -35,7 +35,7 @@ local to_insert =
             end
         end,
     },
-    --  Monster Wands
+    -- Monster Wands
     {
         id = "COPIS_QSTNBL_PERKS_MONSTER_WANDS",
         author = "Copi",
@@ -111,7 +111,7 @@ local to_insert =
         end,
     },
     --[[
-    --  Limb Lengthening
+    -- Limb Lengthening
     {
         id = "COPIS_QSTNBL_PERKS_LIMB_LENGTHENING",
         author = "Copi",
@@ -127,7 +127,7 @@ local to_insert =
 
         end,
     },]]
-    --  Perk
+    -- Perk
     {
         id = "COPIS_QSTNBL_PERKS_BLANK",
         author = "Copi",
@@ -141,7 +141,7 @@ local to_insert =
         end
     },
     --[[
-    --  Revenge Supernova
+    -- Revenge Supernova
     {
         id = "COPIS_QSTNBL_PERKS_REVENGE_SUPERNOVA",
         author = "Copi",
@@ -156,6 +156,72 @@ local to_insert =
                 _tags = "perk_component",
                 script_damage_received =
                 "mods/copis_questionable_perks/files/scripts/perk/damage_received/supernova.lua"
+            })
+        end,
+    },]]
+    --[[
+    -- LOIC
+    {
+        id = "COPIS_QSTNBL_PERKS_REVENGE_SUPERNOVA",
+        author = "Copi",
+        ui_name = "$perk_name_copis_qstnbl_perks_revenge_supernova",
+        ui_description = "$perk_desc_copis_qstnbl_perks_revenge_supernova",
+        ui_icon = "mods/copis_questionable_perks/files/ui_gfx/perk_icons/supernova.png",
+        perk_icon = "mods/copis_questionable_perks/files/items_gfx/perks/supernova.png",
+        stackable = false,
+        usable_by_enemies = true,
+        func = function(entity_perk_item, entity_who_picked, item_name)
+            EntityAddComponent2(entity_who_picked, "LuaComponent", {
+                _tags = "perk_component",
+                script_damage_received =
+                "mods/copis_questionable_perks/files/scripts/perk/damage_received/supernova.lua"
+            })
+        end,
+    },]]
+    --[[
+    -- Slippery
+    {
+        id = "COPIS_QSTNBL_PERKS_REVENGE_SUPERNOVA",
+        author = "Copi",
+        ui_name = "$perk_name_copis_qstnbl_perks_revenge_supernova",
+        ui_description = "$perk_desc_copis_qstnbl_perks_revenge_supernova",
+        ui_icon = "mods/copis_questionable_perks/files/ui_gfx/perk_icons/supernova.png",
+        perk_icon = "mods/copis_questionable_perks/files/items_gfx/perks/supernova.png",
+        stackable = false,
+        usable_by_enemies = true,
+        func = function(entity_perk_item, entity_who_picked, item_name)
+            EntityAddComponent2(entity_who_picked, "LuaComponent", {
+                _tags = "perk_component",
+                script_damage_received =
+                "mods/copis_questionable_perks/files/scripts/perk/damage_received/supernova.lua"
+            })
+        end,
+    },]]
+    --[[
+    -- Tinkle With Wands Everywhere
+    {
+        id = "COPIS_QSTNBL_PERKS_REVENGE_SUPERNOVA",
+        author = "Copi",
+        ui_name = "$perk_name_copis_qstnbl_perks_revenge_supernova",
+        ui_description = "$perk_desc_copis_qstnbl_perks_revenge_supernova",
+        ui_icon = "mods/copis_questionable_perks/files/ui_gfx/perk_icons/supernova.png",
+        perk_icon = "mods/copis_questionable_perks/files/items_gfx/perks/supernova.png",
+        stackable = false,
+        usable_by_enemies = true,
+        func = function(entity_perk_item, entity_who_picked, item_name)
+            -- Every 30s, piss a little, if holding a wand.
+            EntityAddComponent2(entity_who_picked, "LuaComponent", {
+                _tags = "perk_component",
+                script_source_file =
+                "mods/copis_questionable_perks/files/scripts/perk/damage_received/supernova.lua"
+                execute_every_n_frames = 1800
+            })
+            -- Change icon and description
+            EntityAddComponent2(entity_who_picked, "LuaComponent", {
+                _tags = "perk_component",
+                script_source_file =
+                "mods/copis_questionable_perks/files/scripts/perk/damage_received/supernova.lua"
+                execute_every_n_frames = 1800
             })
         end,
     },]]
