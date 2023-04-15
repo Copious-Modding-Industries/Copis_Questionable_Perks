@@ -197,15 +197,14 @@ local to_insert =
             })
         end,
     },]]
-    --[[
     -- Tinkle With Wands Everywhere
     {
-        id = "COPIS_QSTNBL_PERKS_REVENGE_SUPERNOVA",
+        id = "COPIS_QSTNBL_PERKS_PISS_WAND",
         author = "Copi",
-        ui_name = "$perk_name_copis_qstnbl_perks_revenge_supernova",
-        ui_description = "$perk_desc_copis_qstnbl_perks_revenge_supernova",
-        ui_icon = "mods/copis_questionable_perks/files/ui_gfx/perk_icons/supernova.png",
-        perk_icon = "mods/copis_questionable_perks/files/items_gfx/perks/supernova.png",
+        ui_name = "$perk_name_copis_qstnbl_perks_piss_wand",
+        ui_description = "$perk_desc_copis_qstnbl_perks_piss_wand",
+        ui_icon = "mods/copis_questionable_perks/files/ui_gfx/perk_icons/piss_wand.png",
+        perk_icon = "mods/copis_questionable_perks/files/items_gfx/perks/piss_wand.png",
         stackable = false,
         usable_by_enemies = true,
         func = function(entity_perk_item, entity_who_picked, item_name)
@@ -213,18 +212,29 @@ local to_insert =
             EntityAddComponent2(entity_who_picked, "LuaComponent", {
                 _tags = "perk_component",
                 script_source_file =
-                "mods/copis_questionable_perks/files/scripts/perk/damage_received/supernova.lua"
-                execute_every_n_frames = 1800
-            })
-            -- Change icon and description
-            EntityAddComponent2(entity_who_picked, "LuaComponent", {
-                _tags = "perk_component",
-                script_source_file =
-                "mods/copis_questionable_perks/files/scripts/perk/damage_received/supernova.lua"
-                execute_every_n_frames = 1800
+                "mods/copis_questionable_perks/files/scripts/perk/piss_wand.lua",
+                execute_every_n_frame = 1800,
             })
         end,
-    },]]
+    },
+        -- Monster Wands
+        {
+            id = "COPIS_QSTNBL_PERKS_ITEM_REPEL",
+            author = "Copi",
+            ui_name = "$perk_name_copis_qstnbl_perks_item_repel",
+            ui_description = "$perk_desc_copis_qstnbl_perks_item_repel",
+            ui_icon = "mods/copis_questionable_perks/files/ui_gfx/perk_icons/item_repel.png",
+            perk_icon = "mods/copis_questionable_perks/files/items_gfx/perks/item_repel.png",
+            stackable = false,
+            func = function(entity_perk_item, entity_who_picked, item_name)
+                EntityAddComponent2(entity_who_picked, "LuaComponent", {
+                    _tags = "perk_component",
+                    script_source_file =
+                    "mods/copis_questionable_perks/files/scripts/perk/item_repel.lua",
+                    execute_every_n_frames = 1
+                })
+            end,
+        },
 }
 
 for i = 1, #to_insert do
