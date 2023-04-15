@@ -4,10 +4,14 @@
 dofile_once("data/scripts/lib/utilities.lua")
 dofile_once("data/scripts/lib/coroutines.lua")
 
-async(function ()
-	local entity_id    = GetUpdatedEntityID()
-	local pos_x, pos_y = EntityGetTransform( entity_id )
+local entity_id = GetUpdatedEntityID()
+local pos_x, pos_y = EntityGetTransform(entity_id)
+local hittables = EntityGetInRadiusWithTag(pos_x, pos_y, 128, "hittable") or {}
+if #hittables > 0 then
+    local target = hittables[math.random(1, #hittables)]
+	local t_x, t_y = EntityGetTransform( target )
 
+    GameCreateSpriteForXFrames("mods/copis_questionable_perks/files/particles/loic.png", t_x, t_y, true, 0, 0, 180)
 	GameEntityPlaySound( entity_id, "beam_from_sky_start" )
 	wait( 60 )
 
@@ -24,11 +28,11 @@ async(function ()
 	GameScreenshake( 100 )
 	wait( 20 )
 
-	GameCutThroughWorldVertical( pos_x, -2147483647, pos_y, 40, 40 )
+	GameCutThroughWorldVertical( t_x, -2147483647, t_y, 40, 40 )
 	EntitySetComponentsWithTagEnabled( entity_id, "enabled_in_world", true )
-	GamePlaySound( "data/audio/Desktop/misc.bank", "misc/beam_from_sky_hit", pos_x, pos_y )
+	GamePlaySound( "data/audio/Desktop/misc.bank", "misc/beam_from_sky_hit", t_x, t_y )
 	GameScreenshake( 200 )
-    EntityLoad( "data/entities/particles/poof_green_huge.xml", pos_x, pos_y-5 )
+    EntityLoad( "mods/copis_questionable_perks/entities/particles/loic.xml", t_x, t_y-5 )
 
     local pec = EntityGetFirstComponent( entity_id, "ParticleEmitterComponent")
     if pec then
@@ -36,4 +40,4 @@ async(function ()
         ComponentSetValue2(pec, "count_max", 21000)
         ComponentSetValue2(pec, "cosmetic_force_create", true)
     end
-end)
+end

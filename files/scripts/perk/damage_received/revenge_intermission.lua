@@ -16,7 +16,7 @@ function damage_received(damage, message, entity_thats_responsible, is_fatal)
                 local t = GameGetRealWorldTimeSinceStarted()
                 local quit = false
                 while not quit do
-                    if GameGetRealWorldTimeSinceStarted() - t > 3 * duration then
+                    if GameGetRealWorldTimeSinceStarted() - t > duration then
                         quit = true
                     else
                         local shit = "CONCATS " .. "ARE " .. "FUCKING " .. "SLOW."

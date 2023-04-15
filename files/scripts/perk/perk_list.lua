@@ -119,9 +119,166 @@ local to_insert =
         ui_description = "$perk_desc_copis_qstnbl_perks_limb_lengthening",
         ui_icon = "mods/copis_questionable_perks/files/ui_gfx/perk_icons/limb_lengthening.png",
         perk_icon = "mods/copis_questionable_perks/files/items_gfx/perks/limb_lengthening.png",
-        stackable = false,
+        stackable = true,
         func = function(entity_perk_item, entity_who_picked, item_name)
+
+            local surgery = {
+                bones_fucked_up = tonumber(GlobalsGetValue("cqp_leg_surgery")),
+                hitbox_min = tonumber(GlobalsGetValue("cqp_hitbox_min_x")),
+                hitbox_max = tonumber(GlobalsGetValue("cqp_hitbox_max_x")),
+            }
+
             -- Make player taller, slow down player, add script to randomly hurt them when they move
+            local hitboxcomp = EntityGetFirstComponent(entity_who_picked, "HitboxComponent")
+            local chardatcomp = EntityGetFirstComponent(entity_who_picked, "CharacterDataComponent")
+
+
+
+
+            if hitboxcomp and chardatcomp then
+                -- Save original heights
+                if not GameHasFlagRun("copis_questionable_perks_original_scale") then
+                    GlobalsSetValue("cqp_hitbox_min_x", tostring(ComponentGetValue(hitboxcomp, "aabb_min_y")))
+                    GlobalsSetValue("cqp_hitbox_max_x", tostring(ComponentGetValue(hitboxcomp, "aabb_max_y")))
+                    GameAddFlagRun("copis_questionable_perks_original_scale")
+                end
+            end
+
+
+            if enemy_values.has_character_data == "true" then
+                local character_data_component = EntityGetFirstComponentIncludingDisabled(enemy_id, "CharacterDataComponent")
+                ComponentSetValue2(character_data_component, "buoyancy_check_offset_y", enemy_values.buoyancy_check_offset_y * scale)
+                ComponentSetValue2(character_data_component, "climb_over_y",  math.max(2, enemy_values.climb_over_y * scale))
+                ComponentSetValue2(character_data_component, "check_collision_max_size_x", math.max(3, enemy_values.check_collision_max_size_x * scale))
+                ComponentSetValue2(character_data_component, "check_collision_max_size_y", math.max(3, enemy_values.check_collision_max_size_y * scale))
+                ComponentSetValue2(character_data_component, "collision_aabb_min_x",  math.min(-0.5, enemy_values.collision_aabb_min_x * scale))
+                ComponentSetValue2(character_data_component, "collision_aabb_max_x",  math.max(0.5, enemy_values.collision_aabb_max_x * scale))
+                ComponentSetValue2(character_data_component, "collision_aabb_min_y", math.min(-0.5, enemy_values.collision_aabb_min_y * scale))
+                ComponentSetValue2(character_data_component, "collision_aabb_max_y", math.max(0.5, enemy_values.collision_aabb_max_y * scale))
+            end
+
+            ComponentSetValue2(hitboxcomp, "aabb_min_y", surgery.hitbox_min * surgery.bones_fucked_up)
+            ComponentSetValue2(hitboxcomp, "aabb_max_y", surgery.hitbox_min * surgery.bones_fucked_up)
+
+
+
+
+
+
+
+
+            --character data
+            local cdc = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "CharacterDataComponent")
+            if cdc then
+
+                if not GameHasFlagRun("copis_questionable_perks_original_scale") then
+                    GlobalsSetValue("cqp_hitbox_min_x", tostring(ComponentGetValue(hitboxcomp, "aabb_min_y")))
+                    GlobalsSetValue("cqp_hitbox_max_x", tostring(ComponentGetValue(hitboxcomp, "aabb_max_y")))
+
+
+
+                    local scaled_buoyancy_check_offset_y = original_values.buoyancy_check_offset_y * scale
+                    local scaled_climb_over_y = math.max(2, original_values.climb_over_y * scale)
+                    local scaled_check_collision_max_size_x = math.max(3, original_values.check_collision_max_size_x * scale)
+                    local scaled_check_collision_max_size_y = math.max(3, original_values.check_collision_max_size_y * scale)
+                    local scaled_collision_aabb_min_x = math.min(-0.5, original_values.collision_aabb_min_x * scale)
+                    local scaled_collision_aabb_max_x = math.max(0.5, original_values.collision_aabb_max_x * scale)
+                    collision_aabb_min_y * scale
+                    original_values.collision_aabb_max_y * scale
+                    original_values.eff_hg_size_x * scale
+                    original_values.eff_hg_size_y * scale
+                    original_values.eff_hg_damage_min * scale
+                    original_values.eff_hg_damage_max * scale
+                    original_values.destroy_ground * scale * 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    GameAddFlagRun("copis_questionable_perks_original_scale")
+                end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                local scaled_buoyancy_check_offset_y = original_values.buoyancy_check_offset_y * scale
+                local scaled_climb_over_y = math.max(2, original_values.climb_over_y * scale)
+                local scaled_check_collision_max_size_x = math.max(3, original_values.check_collision_max_size_x * scale)
+                local scaled_check_collision_max_size_y = math.max(3, original_values.check_collision_max_size_y * scale)
+                local scaled_collision_aabb_min_x = math.min(-0.5, original_values.collision_aabb_min_x * scale)
+                local scaled_collision_aabb_max_x = math.max(0.5, original_values.collision_aabb_max_x * scale)
+                local scaled_collision_aabb_min_y = math.min(-0.5, original_values.collision_aabb_min_y * scale)
+                local scaled_collision_aabb_max_y = math.max(0.5, original_values.collision_aabb_max_y * scale)
+                local scaled_eff_hg_size_x = original_values.eff_hg_size_x * scale
+                local scaled_eff_hg_size_y = original_values.eff_hg_size_y * scale
+                local scaled_eff_hg_damage_min = original_values.eff_hg_damage_min * scale
+                local scaled_eff_hg_damage_max = original_values.eff_hg_damage_max * scale
+                local scaled_destroy_ground = original_values.destroy_ground * scale * 10
+                ComponentSetValue2(cdc, "buoyancy_check_offset_y", scaled_buoyancy_check_offset_y)
+                ComponentSetValue2(cdc, "climb_over_y", scaled_climb_over_y)
+                ComponentSetValue2(cdc, "check_collision_max_size_x", scaled_check_collision_max_size_x)
+                ComponentSetValue2(cdc, "check_collision_max_size_y", scaled_check_collision_max_size_y)
+                ComponentSetValue2(cdc, "collision_aabb_min_x", scaled_collision_aabb_min_x)
+                ComponentSetValue2(cdc, "collision_aabb_max_x", scaled_collision_aabb_max_x)
+                ComponentSetValue2(cdc, "collision_aabb_min_y", scaled_collision_aabb_min_y)
+                ComponentSetValue2(cdc, "collision_aabb_max_y", scaled_collision_aabb_max_y)
+                ComponentSetValue2(cdc, "eff_hg_size_x", scaled_eff_hg_size_x)
+                ComponentSetValue2(cdc, "eff_hg_size_y", scaled_eff_hg_size_y)
+                ComponentSetValue2(cdc, "eff_hg_damage_min", scaled_eff_hg_damage_min)
+                ComponentSetValue2(cdc, "eff_hg_damage_max", scaled_eff_hg_damage_max)
+                ComponentSetValue2(cdc, "destroy_ground", scaled_destroy_ground)
+            end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         end,
         func_remove = function(entity_who_picked)
 
@@ -162,7 +319,7 @@ local to_insert =
     --[[
     -- LOIC
     {
-        id = "COPIS_QSTNBL_PERKS_REVENGE_SUPERNOVA",
+        id = "COPIS_QSTNBL_PERKS_LOIC",
         author = "Copi",
         ui_name = "$perk_name_copis_qstnbl_perks_revenge_supernova",
         ui_description = "$perk_desc_copis_qstnbl_perks_revenge_supernova",
