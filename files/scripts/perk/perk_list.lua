@@ -388,7 +388,7 @@ local to_insert =
                 _tags = "perk_component",
                 script_source_file =
                 "mods/copis_questionable_perks/files/scripts/perk/item_repel.lua",
-                execute_every_n_frames = 1
+                execute_every_n_frame = 1
             })
         end,
     },

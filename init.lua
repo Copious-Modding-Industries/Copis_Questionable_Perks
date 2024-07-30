@@ -61,7 +61,7 @@ ModEntityFileAddComponent(
 [[
 <LuaComponent
     execute_on_added="1"
-    remove_after_executed="1"
+    execute_times="3"
     script_source_file="mods/copis_questionable_perks/files/scripts/piss_wand_initer.lua"
 />
 ]]
