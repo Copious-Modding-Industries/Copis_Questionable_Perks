@@ -11,7 +11,6 @@ local player_id = EntityGetRootEntity(entity_id)
 
 local x, y, r = EntityGetTransform(player_id)
 local found_normal, fx, fy, dist = GetSurfaceNormal(x, y, 15, 8)
-print(found_normal)
 EntitySetTransform(player_id, x, y, found_normal and math.atan2(fy, fx)-math.pi/2 or r)
 
 component_readwrite( EntityGetFirstComponent( player_id, "CharacterPlatformingComponent" ), { pixel_gravity = 350, mFramesNotSwimming = 10 }, function(comp)
