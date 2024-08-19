@@ -34,6 +34,39 @@ local to_insert =
                 })
             end
         end,
+    },    -- Wall Climb
+    {
+        id = "COPIS_QSTNBL_PERKS_WALLCLIMB",
+        author = "Copi",
+        ui_name = "$perk_name_copis_qstnbl_perks_wallclimb",
+        ui_description = "$perk_desc_copis_qstnbl_perks_wallclimb",
+        ui_icon = "mods/copis_questionable_perks/files/ui_gfx/perk_icons/wallclimb.png",
+        perk_icon = "mods/copis_questionable_perks/files/items_gfx/perks/wallclimb.png",
+        stackable = true,
+        usable_by_enemies = true,
+		func = function( entity_perk_item, entity_who_picked, item_name, pickup_count )
+			local x,y = EntityGetTransform( entity_who_picked )
+			local child_id = EntityLoad( "mods/copis_questionable_perks/files/entities/wallclimb.xml", x, y )
+			EntityAddTag( child_id, "perk_entity" )
+			EntityAddChild( entity_who_picked, child_id )
+
+			local platformingcomponents = EntityGetComponent( entity_who_picked, "CharacterPlatformingComponent" )
+			if( platformingcomponents ~= nil ) then
+				for i,component in ipairs(platformingcomponents) do
+					local run_speed = tonumber( ComponentGetMetaCustom( component, "run_velocity" ) ) * 1.25
+					local vel_x = math.abs( tonumber( ComponentGetMetaCustom( component, "velocity_max_x" ) ) ) * 1.25
+					local vel_x_min = 0 - vel_x
+					local vel_x_max = vel_x
+					ComponentSetMetaCustom( component, "run_velocity", run_speed )
+					ComponentSetMetaCustom( component, "velocity_min_x", vel_x_min )
+					ComponentSetMetaCustom( component, "velocity_max_x", vel_x_max )
+					
+					local gravity = ComponentGetValue2( component, "pixel_gravity" ) * 0.8
+					ComponentSetValue( component, "pixel_gravity", gravity )
+				end
+			end
+
+		end,
     },
     -- Monster Wands
     {

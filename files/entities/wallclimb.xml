@@ -1,0 +1,12 @@
+<entity tags="attack_foot_walker">
+	<InheritTransformComponent />
+	<IKLimbWalkerComponent
+		affect_flying="1"
+	/>
+	<IKLimbComponent
+		length="15"
+	/>
+	<LuaComponent
+		script_source_file="mods/copis_questionable_perks/files/scripts/perk/wallclimb.lua"
+	/>
+</entity>
